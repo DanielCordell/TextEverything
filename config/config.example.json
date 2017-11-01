@@ -1,0 +1,11 @@
+{
+	"twilio": {
+		"account_sid": "",
+		"auth_token": "",
+		"phone_number": ""
+	},
+
+	"express": {
+		"port": "1337"
+	}
+}

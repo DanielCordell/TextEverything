@@ -1,0 +1,4 @@
+config/config.json
+config/twitter.json
+config/capitalone.json
+node_modules/*

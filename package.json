@@ -1,0 +1,38 @@
+{
+  "name": "texteverything",
+  "version": "1.0.0",
+  "description": "Bringing SMS into 2017",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/monotron/texteverything.git"
+  },
+  "keywords": [
+    "TextEverything",
+    "twilio",
+    "hacknotts",
+    "hacknotts2017",
+    "mlh",
+    "nodejs"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/monotron/texteverything/issues"
+  },
+  "homepage": "https://github.com/monotron/texteverything#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "foreach-promise": "0.0.1",
+    "http": "0.0.0",
+    "request": "^2.83.0",
+    "request-promise": "^4.2.2",
+    "superagent": "^3.8.0",
+    "twilio": "^3.9.1",
+    "twitter": "^1.7.1"
+  }
+}
