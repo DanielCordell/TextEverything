@@ -1,7 +1,7 @@
 # TextEverything
-[![Documentation Status](https://readthedocs.org/projects/texteverything/badge/?version=latest)](http://texteverything.readthedocs.io/en/latest/?badge=latest)
-
 Our project for HackNotts 2017.
+
+See our website: [http://texteverything.net](http://texteverything.net)
 
 ## The team
 - **Toby Jones [(monotron)](http://github.com/monotron)**
@@ -18,5 +18,4 @@ An app that receives texts and executes whatever code you like.
 We're working on a plugin repository, where users can upload plugins they've created and have other users of TextEverything download and review them.
 
 ## The documentation
-Soon™
-
+You can find some documentation on [our website](http://texteverything.net/docs).
