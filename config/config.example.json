@@ -2,7 +2,10 @@
 	"twilio": {
 		"account_sid": "",
 		"auth_token": "",
-		"phone_number": ""
+		"phone_number": "",
+		"allowed_numbers": [
+			"+12345678901"
+		]
 	},
 
 	"express": {

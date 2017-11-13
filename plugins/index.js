@@ -1,4 +1,5 @@
 const MessagingResponse = require('twilio').twiml.MessagingResponse;
+var config = require('./../config/config.json')
 
 var normalPath = require('path').join(__dirname)
 var methods = {
@@ -8,7 +9,14 @@ var methods = {
 			{
 				throw err
 			}
+
 			var validCommand = false
+
+			if(!config.twilio.allowed_numbers.includes(request.From)) 
+			{
+				console.log(`Received command from disallowed number ${request.From}. Not responding.`)
+			}
+
 			files.forEach(function(element) {
 				if(element != 'index.js') {
 					const plugin = require('./' + element)
