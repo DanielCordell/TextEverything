@@ -21,7 +21,16 @@ var express_app = express()
 express_app.use(body_parser.urlencoded({extended: false}))
 
 express_app.post('/texteverything/message', function(request, response) {
-	plugins.handle(request.body, response)
+
+	const twilio_signature = request.header('X-Twilio-Signature')
+	const validTwilioRequest = twilio.validateRequest(config.twilio.auth_token, twilio_signature,
+				config.twilio.webhook_url, request.body)
+
+	if(validTwilioRequest) {
+		plugins.handle(request.body, response)
+	} else {
+		console.log("Received a potentially spoofed request - dropping silently.")
+	}
 })
 
 var listener = express_app.listen(config.express.port, function() {

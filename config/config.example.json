@@ -5,7 +5,8 @@
 		"phone_number": "",
 		"allowed_numbers": [
 			"+12345678901"
-		]
+		],
+		"webhook_url": ""
 	},
 
 	"express": {
