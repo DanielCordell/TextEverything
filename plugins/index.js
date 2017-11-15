@@ -15,6 +15,11 @@ var methods = {
 			if(!config.twilio.allowed_numbers.includes(request.From))
 			{
 				console.log(`Received command from disallowed number ${request.From}. Not responding.`)
+
+				const twiml = new MessagingResponse()
+				response.writeHead(200, {'Content-Type': 'text/xml'})
+				response.end(twiml.toString())
+				
 				return
 			}
 
