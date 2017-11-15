@@ -12,9 +12,10 @@ var methods = {
 
 			var validCommand = false
 
-			if(!config.twilio.allowed_numbers.includes(request.From)) 
+			if(!config.twilio.allowed_numbers.includes(request.From))
 			{
 				console.log(`Received command from disallowed number ${request.From}. Not responding.`)
+				return
 			}
 
 			files.forEach(function(element) {
