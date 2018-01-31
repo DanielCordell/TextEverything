@@ -9,7 +9,7 @@ try {
   console.error('Failed to load config/config.json!');
   console.error('Make sure the file exists.');
   console.error('If you need help, check out the config.example.json file.');
-	process.exit(1);
+  process.exit(1);
 }
 
 const plugins = require('./plugins/index.js');
@@ -27,6 +27,18 @@ app.post('/texteverything/message', function(request, response) {
   );
 
   if (validTwilioRequest) {
+    if (!config.twilio.allowed_numbers.includes(request.body.From)) {
+      console.log(
+        `Received command from disallowed number ${
+          request.From
+        }. Not responding.`
+      );
+
+      const twiml = new MessagingResponse();
+      response.set('Content-Type', 'text/xml');
+      response.send(twiml.toString());
+      return;
+    }
     plugins.handle(request.body, response);
   } else {
     console.log('Received a potentially spoofed request - dropping silently.');
