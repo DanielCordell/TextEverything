@@ -1,12 +1,12 @@
 {
 	"twilio": {
-		"account_sid": "",
-		"auth_token": "",
-		"phone_number": "",
-		"allowed_numbers": [
+		"accountSid": "",
+		"authToken": "",
+		"phoneNumber": "",
+		"allowedNumbers": [
 			"+12345678901"
 		],
-		"webhook_url": ""
+		"webhookUrl": ""
 	},
 
 	"express": {

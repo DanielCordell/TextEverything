@@ -20,16 +20,16 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.post('/texteverything/message', function(request, response) {
   const twilioSignature = request.header('X-Twilio-Signature');
   const validTwilioRequest = twilio.validateRequest(
-    config.twilio.auth_token,
+    config.twilio.authToken,
     twilioSignature,
-    config.twilio.webhook_url,
+    config.twilio.webhookUrl,
     request.body
   );
 
   if (validTwilioRequest) {
     response.set('Content-Type', 'text/xml');
 
-    if (!config.twilio.allowed_numbers.includes(request.body.From)) {
+    if (!config.twilio.allowedNumbers.includes(request.body.From)) {
       console.log(
         `Received command from disallowed number ${
           request.From
