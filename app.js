@@ -1,7 +1,6 @@
 const twilio = require('twilio');
 const express = require('express');
 const bodyParser = require('body-parser');
-const plugins = require('./plugins/index.js');
 
 let config;
 try {
@@ -10,9 +9,10 @@ try {
   console.error('Failed to load config/config.json!');
   console.error('Make sure the file exists.');
   console.error('If you need help, check out the config.example.json file.');
-  process.exitCode = 1;
+	process.exit(1);
 }
 
+const plugins = require('./plugins/index.js');
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: false }));
