@@ -17,7 +17,6 @@ var methods = {
             }
             const twiml = new MessagingResponse()
             twiml.message(`Here's your lenny face: ${json.face}`)
-            response.writeHead(200,{'Content-Type': 'text/xml'})
             response.end(twiml.toString())
         }).catch((err) => {
             console.log('HTTP request failed!')

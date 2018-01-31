@@ -14,7 +14,7 @@ var methods = {
         catch(ex){
             const error = new MessagingResponse()
             error.message("config/capitalone.json not found. Please see config/capitalone.example.json.")
-            response.writeHead(200,{'Content-Type': 'text/xml'})
+
             response.end(error.toString())
             return
 		}
@@ -22,12 +22,11 @@ var methods = {
 		// start by parsing the arguments.
 		if(request.Body.split(" ").length == 1) {
 			console.log('[CapitalOne] not enough arguments.')
-			
+
 			twiml.message('Not enough arguments.\nUse: capitalone balance')
-			
-			response.writeHead(200, {'Content-Type': 'text/xml'})
+
 			response.end(twiml.toString())
-			
+
 			return
 		}
 
@@ -43,10 +42,9 @@ var methods = {
 				} catch (ex) {
 					console.log('[CapitalOne] JSON parse failed.')
 					twiml.message('A problem occurred while fetching your balance.')
-					
-					response.writeHead(200, {'Content-Type': 'text/xml'})
+
 					response.end(twiml.toString())
-					
+
 					return
 				}
 
@@ -56,7 +54,6 @@ var methods = {
 					balanceresponse.message(`The balance of your ${account.type} account, ${account.nickname}, is ${account.balance} GBP.`)
 				})
 
-				response.writeHead(200, {'Content-Type': 'text/xml'})
 				response.end(balanceresponse.toString())
 				return
 
@@ -75,8 +72,7 @@ var methods = {
 				} catch (ex) {
 					console.log('[CapitalOne] JSON parse failed.')
 					twiml.message('A problem occurred while fetching your accounts.')
-					
-					response.writeHead(200, {'Content-Type': 'text/xml'})
+
 					response.end(twiml.toString())
 					return
 				}
@@ -98,7 +94,6 @@ var methods = {
 							console.log('[CapitalOne] JSON parse failed.')
 							const err = new MessagingResponse()
 							err.message('A problem occurred while fetching your deposit information.')
-							response.writeHead(200, {'Content-Type': 'text/xml'})
 							response.end(err.toString())
 							return
 						}
@@ -106,7 +101,6 @@ var methods = {
 						if (index == array.length-1){
 							var depositresponse = new MessagingResponse()
 							depositresponse.message(msg)
-							response.writeHead(200, {'Content-Type': 'text/xml'})
 							response.end(depositresponse.toString())
 							return
 						}

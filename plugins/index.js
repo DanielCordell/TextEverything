@@ -1,47 +1,49 @@
+const fs = require('fs');
 const MessagingResponse = require('twilio').twiml.MessagingResponse;
-var config = require('./../config/config.json')
+const config = require('./../config/config.json');
 
-var normalPath = require('path').join(__dirname)
-var methods = {
-	handle: function(request, response) {
-		require('fs').readdir(normalPath, (err, files) => {
-			if(err)
-			{
-				throw err
-			}
+const plugins = {};
+const aliases = {};
+const normalPath = require('path').join(__dirname);
 
-			var validCommand = false
+fs.readdir(normalPath, (err, files) => {
+  if (err) {
+    throw err;
+  }
 
-			if(!config.twilio.allowed_numbers.includes(request.From))
-			{
-				console.log(`Received command from disallowed number ${request.From}. Not responding.`)
+  files.forEach(element => {
+    if (element != 'index.js') {
+      const pluginName = element.replace('.js', '');
+      plugins[pluginName] = require('./' + element);
+      plugins[pluginName].meta.aliases.forEach(alias => {
+        aliases[alias] = pluginName;
+      });
+      console.log(
+        `Loaded ${pluginName} plugin with aliases ${plugins[
+          pluginName
+        ].meta.aliases.join(', ')}`
+      );
+    }
+  });
+});
 
-				const twiml = new MessagingResponse()
-				response.writeHead(200, {'Content-Type': 'text/xml'})
-				response.end(twiml.toString())
-				
-				return
-			}
+const methods = {
+  handle: function(request, response) {
+    const command = request.Body.split(' ')[0].toLowerCase();
+    if (aliases.hasOwnProperty(command)) {
+      plugins[aliases[command]].run(request, response);
+      console.log(`Executing ${aliases[command]} for ${request.From}.`);
+    } else {
+      const twiml = new MessagingResponse();
+      console.log(
+        `Received invalid command ${request.Body} from ${request.From}.`
+      );
+      twiml.message(
+        `Sorry, that's an invalid command.\nCheck your plugins folder for a list of valid commands.`
+      );
+      response.send(twiml.toString());
+    }
+  }
+};
 
-			files.forEach(function(element) {
-				if(element != 'index.js') {
-					const plugin = require('./' + element)
-					if(plugin.meta.aliases.indexOf(request.Body.split(" ")[0].toLowerCase()) > -1) {
-						plugin.run(request, response)
-						console.log(`Executing ${element} for ${request.From}.`)
-						validCommand = true
-					}
-				}
-			})
-			if (validCommand == false){
-				const twiml = new MessagingResponse()
-				console.log(`Received invalid command ${request.Body} from ${request.From}.`)
-				twiml.message(`Sorry, that's an invalid command.\nCheck your plugins folder for a list of valid commands.`)
-				response.writeHead(200,{'Content-Type': 'text/xml'})
-				response.end(twiml.toString())
-			}
-		})
-	}
-}
-
-module.exports = methods
+module.exports = methods;

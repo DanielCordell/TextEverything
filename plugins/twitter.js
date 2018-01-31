@@ -12,7 +12,6 @@ var methods = {
         catch(ex){
             const error = new MessagingResponse()
             error.message("config/twitter.json not found. Please see config/twitter.example.json.")
-            response.writeHead(200,{'Content-Type': 'text/xml'})
             response.end(error.toString())
             return
         }
@@ -53,7 +52,7 @@ var methods = {
                 console.log('Failed to parse the JSON data.')
                 data = 'Failed to parse the JSON data.'
             }
-            
+
             const twiml = new MessagingResponse()
             if (data.length > 1600){
                 var msg = data.substring(0,1454) + '\n\nERROR: EXCEEDED MAXIMUM TEXT LENGTH'
@@ -63,15 +62,13 @@ var methods = {
             else  {
                 twiml.message(data)
             }
-            response.writeHead(200,{'Content-Type': 'text/xml'})
             response.end(twiml.toString())
         }).catch(function(err){
             twiml.message("There was an error accessing the timeline")
-            response.writeHead(200,{'Content-Type': 'text/xml'})
             response.end(twiml.toString())
             return
         })
-    }, 
+    },
 
     meta: {
         aliases: ['twitter', 'twit']

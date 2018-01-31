@@ -1,12 +1,12 @@
+const methods = {
+  run: function(request, response) {
+    console.log('Got message! ' + request.Body);
+    response.send('<Response />');
+  },
 
-var methods = {
-	run: function(request, response) {
-		console.log('Got message! ' + request.Body)
-	},
+  meta: {
+    aliases: ['test']
+  }
+};
 
-	meta: {
-		aliases: ['test']
-	}
-}
-
-module.exports = methods
+module.exports = methods;
