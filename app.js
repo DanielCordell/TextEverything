@@ -30,6 +30,7 @@ express_app.post('/texteverything/message', function(request, response) {
 		plugins.handle(request.body, response)
 	} else {
 		console.log("Received a potentially spoofed request - dropping silently.")
+		response.sendStatus(403);
 	}
 })
 
