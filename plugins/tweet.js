@@ -12,7 +12,6 @@ var methods = {
         catch(ex){
             const error = new MessagingResponse()
             error.message("config/twitter.json not found. Please see config/twitter.example.json.")
-            response.writeHead(200,{'Content-Type': 'text/xml'})
             response.end(error.toString())
             return
         }
@@ -28,21 +27,18 @@ var methods = {
         const twiml = new MessagingResponse()
         if (message.length > 140){
             twiml.message("Your tweet was too long, and was not sent.")
-            response.writeHead(200,{'Content-Type': 'text/xml'})
             response.end(twiml.toString())
             return
         }
         client.post('statuses/update', params).then(function(tweet){
             twiml.message("Tweet Sent!")
-            response.writeHead(200,{'Content-Type': 'text/xml'})
             response.end(twiml.toString())
         }).catch(function(error){
             twiml.message("There was an error sending the tweet.")
-            response.writeHead(200,{'Content-Type': 'text/xml'})
             response.end(twiml.toString())
             return
         })
-    }, 
+    },
 
     meta: {
         aliases: ['tweet', 'tweeting']

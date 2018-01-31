@@ -27,6 +27,8 @@ app.post('/texteverything/message', function(request, response) {
   );
 
   if (validTwilioRequest) {
+    response.set('Content-Type', 'text/xml');
+
     if (!config.twilio.allowed_numbers.includes(request.body.From)) {
       console.log(
         `Received command from disallowed number ${
@@ -35,10 +37,10 @@ app.post('/texteverything/message', function(request, response) {
       );
 
       const twiml = new MessagingResponse();
-      response.set('Content-Type', 'text/xml');
       response.send(twiml.toString());
       return;
     }
+
     plugins.handle(request.body, response);
   } else {
     console.log('Received a potentially spoofed request - dropping silently.');

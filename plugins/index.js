@@ -41,7 +41,6 @@ const methods = {
       twiml.message(
         `Sorry, that's an invalid command.\nCheck your plugins folder for a list of valid commands.`
       );
-      response.set('Content-Type', 'text/xml');
       response.send(twiml.toString());
     }
   }

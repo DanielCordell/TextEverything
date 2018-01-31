@@ -35,14 +35,13 @@ var methods = {
             else  {
                 twiml.message(data)
             }
-            response.writeHead(200,{'Content-Type': 'text/xml'})
             response.end(twiml.toString())
         }).catch((err) => {
             console.log('HTTP Request Failed!')
             data = 'HTTP Request Failed. Check your arguments. Format is:\ncommit-history <github username> <repo name> <number of commits>'
             console.log(err)
         })
-    }, 
+    },
 
     meta: {
         aliases: ['commit', 'commithistory', 'commit_history', 'commit-history']
