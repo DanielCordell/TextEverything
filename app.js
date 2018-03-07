@@ -49,5 +49,5 @@ app.post('/texteverything/message', function(request, response) {
 });
 
 app.listen(config.express.port, function() {
-  console.log(`Express app listening on port ${config.express.port}.`);
+  console.log(`TextEverything listening on port ${config.express.port}.`);
 });
