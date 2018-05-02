@@ -6,7 +6,8 @@
 		"allowedNumbers": [
 			"+12345678901"
 		],
-		"webhookUrl": ""
+		"webhookUrl": "",
+		"webhook_path": "/texteverything/message"
 	},
 
 	"express": {

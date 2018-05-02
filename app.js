@@ -17,7 +17,7 @@ const app = express();
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.post('/texteverything/message', function(request, response) {
+app.post(config.twilio.webhook_path, function(request, response) {
   const twilioSignature = request.header('X-Twilio-Signature');
   const validTwilioRequest = twilio.validateRequest(
     config.twilio.authToken,
