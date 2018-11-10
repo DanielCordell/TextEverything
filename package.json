@@ -29,10 +29,10 @@
     "express": "^4.16.2",
     "foreach-promise": "0.0.1",
     "http": "0.0.0",
-    "request": "^2.83.0",
+    "request": "^2.88.0",
     "request-promise": "^4.2.2",
     "superagent": "^3.8.2",
-    "twilio": "^3.13.0",
+    "twilio": "^3.23.2",
     "twitter": "^1.7.1"
   }
 }
