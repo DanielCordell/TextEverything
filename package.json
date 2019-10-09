@@ -25,14 +25,14 @@
   },
   "homepage": "https://github.com/monotron/texteverything#readme",
   "dependencies": {
-    "body-parser": "^1.18.2",
-    "express": "^4.16.2",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
     "foreach-promise": "0.0.1",
     "http": "0.0.0",
     "request": "^2.88.0",
-    "request-promise": "^4.2.2",
-    "superagent": "^3.8.2",
-    "twilio": "^3.23.2",
+    "request-promise": "^4.2.4",
+    "superagent": "^5.1.0",
+    "twilio": "^3.35.1",
     "twitter": "^1.7.1"
   }
 }
