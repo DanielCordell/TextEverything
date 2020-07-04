@@ -2,7 +2,7 @@
 Our project for HackNotts 2017.
 
 ## The team
-- **Toby Jones [(monotron)](http://github.com/monotron)**
+- **Toby Jones [(bitshiftsdotio)](http://github.com/bitshiftsdotio)**
 - **Daniel Cordell [(DanielCordell)](http://github.com/DanielCordell)** 
 
 ## The idea
